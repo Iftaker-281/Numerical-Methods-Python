@@ -9,7 +9,7 @@ x_old = x0
 for i in range(20):
     x_new = g(x_old)
     error = abs(x_new - x_old)
-    print("Iteration = ",i+1,"Error = ",error,"New x is: ",round(x_new,4))
+    print("Iteration = ",i+1,"Error = ",error,"New x is: ",x_new)
     if error<Es:
         break
     x_old = x_new
