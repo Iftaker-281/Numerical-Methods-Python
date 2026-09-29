@@ -8,27 +8,37 @@
 #er<Es tahole break korbe
 #f(a) * f(x) < 0 tahole b = x else a = x and x_old = x
 
+from types import new_class
+function = input("Enter function: ")
+
 def f(x):
-    return x**2-7
-a = 2
-b = 3
-print(f(a),f(b))
-Es = 0.01
+  return eval(function)
+
+a = float(input("Enter a:"))
+b = float(input("Enter b:"))
+
+print(f(a), f(b))
+
+rounds = 20
+tolerance = 0.001
+
 mid = (a+b)/2
-for i in range(20):
-    mid_new = (a*f(b) - b*f(a))/(f(b)-f(a))
-    if i>0:
-        error = abs(mid_new - mid)
-        print("Iteration = ",i,"a = ",a,"b = ",b,"mid_new = ",mid,"Error = ",error)
 
-        Er = abs((mid_new-mid)/mid_new)*100
+for i in range(rounds):
+  mid_new = (a*f(b) - b*f(a))/(f(b)- f(a))
 
-        if Er<Es:
-            break
-    if f(a) * f(mid_new) < 0:
-        b = mid_new
-    else:
-        a = mid_new
-    mid = mid_new
-print("Iteartion: ",i+1)
-print("Root: ",round(mid_new,4))
+  if i>0:
+    error = abs((mid_new - mid)/mid_new)*100
+
+    print("iteration: ",i,"a = ",a,"b = ",b,"mid = ",mid_new,"Error = ",error)
+
+    if error<tolerance:
+       break
+  if f(a)*f(mid_new)<0:
+    b = mid
+  else:
+    a = mid
+  mid = mid_new
+print("Root = ",round(mid_new,4)) 
+print("Final error = ",error)
+print("Total iteration = ",i+1)
